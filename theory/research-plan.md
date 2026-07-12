@@ -54,6 +54,13 @@ ingredients are mature — cite the nearest neighbors up front to show awareness
   review (conceptual, no growth).
 - A 2025 NCA-in-biology review that links NCA development to cortical columns in prose — the
   **watch item**: someone could make the leap. Publish a flag early (§7).
+- **Forum-surfaced neighbors (TBP Discourse, crawled 2026-07-12):**
+  [thread 1128](https://forum.thousandbrains.org/t/1128) — a community HTM/TBT system with *learned*
+  (not assumed-Euclidean) reference frames; and
+  [thread 1146](https://forum.thousandbrains.org/t/1146) — Duchateau's "AATM" *coalition* binding
+  architecture. Both are the nearest *live* work, but one learns the RF *geometry* and the other is
+  an alternative *hand-designed* binding scheme — **neither evolves/grows the LM architecture.** Draw
+  that line explicitly; these are the two a TBP-adjacent reviewer is most likely to raise.
 
 ## 3. Method
 
@@ -141,11 +148,11 @@ Stake the novelty flag cheaply and early, then aim the archival method paper onc
 | Risk | Severity | Mitigation |
 |---|---|---|
 | **Scoop** (esp. the NCA-review authors making the cortical-column leap) | high | Publish the ALIFE LBA flag *now*; keep the framing narrow + specific to reference-frame Monty. |
-| Novelty softness — forums not full-text crawled | low | Search TBP Discourse + Numenta forum manually before any submission; cite the neighbors. |
+| Novelty softness | low→resolved | Formal literature **and** TBP + Numenta forums both crawled (2026-07-12) — **no scoop**; digest logged in the vault. Nearest live neighbors (t/1128, t/1146) cited above. Re-check TBP Discourse **weekly** (the live venue; scheduled) since the gap is a decaying asset. |
 | **Config-gen (P0) intractable** — Monty's coupled configs resist parameterization | high | Timebox P0; if generation is too brittle, restrict the search space to a *library* of pre-generated topologies (still a real, if smaller, contribution). |
 | Compute — evolution × emulated CPU is slow | med | FLOP-aware fitness makes small nets a feature; Route-3 arm64-native spike; MAP-Elites parallelizable across machines (sequential *within* a shared output dir only). |
-| Simulator ≠ world | med | Frame claims as computational; real-sensor transfer as the honest limit (P3). |
-| Validation problem (a functional model ≠ the brain) | med | Claims are about architecture-growth for *capability*, not neural realism — pre-empt in the framing chapter (cf. Hiesinger/Koch in the landscape doc). |
+| Simulator ≠ world | med | Frame claims as computational; real-sensor transfer as the honest limit (P3). **Concrete anchor:** TBP's own zero-shot Monty on real RGB-D (YCB-V) hits ~12% correct — an *information wall* from single viewpoints, not a tuning gap (forum t/1157). Set transfer expectations by it. |
+| Validation problem (a functional model ≠ the brain) | med | Claims are about architecture-growth for *capability*, not neural realism — pre-empt in the framing chapter (cf. Hiesinger/Koch in the landscape doc, and the TBT 2.0 paper's appendix on what would count as evidence for reference frames, forum t/1154). |
 
 ## 9. Reading anchors
 
