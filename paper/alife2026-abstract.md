@@ -2,6 +2,8 @@
 
 **Jose B. López**  ·  *[affiliation — TODO]*  ·  *[email — TODO]*
 
+*Interactive results, learned models & data — project page:* <https://aifriend.github.io/milbrain-showcase/>
+
 ## Motivation
 
 The Thousand Brains Theory (TBT) recasts the neocortex as thousands of near-identical cortical
@@ -67,7 +69,7 @@ milestone as the path forward.
 
 *[Figure 1 — the learned 3D reference-frame object models and step-by-step evidence accumulation from
 our reproduction: candidate objects' evidence over sensorimotor steps, the target overtaking
-competitors and converging past threshold.]*
+competitors and converging past threshold. An interactive, rotatable version is on the project page.]*
 
 ## References
 
