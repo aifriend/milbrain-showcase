@@ -1,0 +1,14 @@
+Copyright (c) 2026 Jose B. López
+
+The written content, figures, and results in this repository are licensed under
+the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+Full text: https://creativecommons.org/licenses/by/4.0/
+
+ATTRIBUTION / PRIOR WORK
+This project independently reproduces and proposes an extension to *Monty*, the
+open-source reference implementation of the Thousand Brains Theory by the
+Thousand Brains Project (formerly Numenta), released by them under the MIT License:
+  https://github.com/thousandbrainsproject/tbp.monty
+This repository is an independent research showcase and is not affiliated with or
+endorsed by the Thousand Brains Project. All credit for Monty and the Thousand
+Brains Theory belongs to its authors.
