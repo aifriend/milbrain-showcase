@@ -199,6 +199,14 @@ footer { margin-top:36px; padding-top:20px; border-top:1px solid var(--border); 
     </div>
   </section>
 
+  <section class="block">
+    <p class="blabel">From reproduction to research</p>
+    <h3 class="btitle">Growing the architecture &mdash; first results</h3>
+    <p class="sub" style="margin:6px 0 16px">The reproduction is the baseline. The research question is whether the cortex's <em>architecture</em> can be grown, not hand-designed. The first experiments &mdash; evolving the voting topology on the fixed 5-column model &mdash; give a <b>pre-registered, inconclusive</b> result: on the shipped tasks we can claim neither that voting topology matters nor that it doesn't (10-object is ceiling-saturated; 77-object is noise-limited even at 10 seeds). The one real, tool-grounded finding is <b>zero-mean</b> &mdash; a sparse tree topology genuinely helps on some object poses and hurts on others, cancelling in the mean.</p>
+    <div class="card" style="padding:14px"><img src="results/figures/path_per_seed_delta.svg" alt="Per-seed effect of the tree topology vs all-to-all: bars swing from -2.9 to +8.6 points but average +1.4" style="width:100%;height:auto;display:block;border-radius:10px"></div>
+    <p class="sub" style="margin:14px 0 0">The real win so far is the <b>method</b> &mdash; a paired design whose adversarial review caught a verdict-flipping analysis bug <em>before</em> the data landed &mdash; plus a round-trip-verified generator that mints a valid <em>N</em>-column cortex for any <em>N</em>, unlocking the next phase (evolving the column count itself). <a href="results/evolving-topology.md" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--border)">Read the results &amp; the new challenges &rarr;</a></p>
+  </section>
+
   <footer><span>milbrain &middot; Thousand Brains reproduction</span>
     <span>data: eval_stats.csv + model.pt &middot; 100 episodes</span></footer>
 </div></div>
