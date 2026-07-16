@@ -107,6 +107,11 @@ architecture for any *N*, and — the decisive check — regenerating the shippe
 reproduces it exactly. So minting a valid, arbitrary-column-count cortex is a solved, mechanical step;
 what remains is training a model for a new *N* and running the grown-vs-designed comparison.
 
+**That comparison has since run** — grown *N* ∈ {2,3,4} versus designed 5 on the 77-object task, all
+arms pretrained identically. A grown **three-column** cortex is accuracy-equivalent to designed-5 at
+≈36 % of the compute (short of a registered pass only on integration-step latency). It is the first real
+point on the accuracy-vs-compute frontier E0 could only gesture at. **[Full result →](growing-columns.md)**
+
 ## New challenges this opens
 
 1. **Find a task where voting is load-bearing.** Both shipped 5-column tasks fail to expose a

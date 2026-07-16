@@ -37,20 +37,27 @@ end-to-end — all five columns active and voting, 100% recognition.
 *Every number here was verified against the raw benchmark table, not a summary — see the
 reproduction record.*
 
-## Growing the architecture — first (preliminary) results
+## Growing the architecture — results so far
 
 The reproduction is the baseline; the actual research is whether the architecture can be **grown**
-instead of hand-designed. The [first experiments are in](results/evolving-topology.md), and reported
-honestly: evolving the **voting topology** on the fixed 5-column model is, so far, a **pre-registered
-*inconclusive* result** — on the shipped tasks we can claim neither that voting topology matters nor
-that it doesn't (10-object is ceiling-saturated; 77-object is noise-limited even at 10 seeds). The one
-real, tool-grounded finding is a *zero-mean* effect: a sparse tree topology genuinely helps on some
-object poses and hurts on others, cancelling in the mean. The value so far is the **method** — a
-pre-registered, paired design whose adversarial review caught a verdict-flipping analysis bug *before*
-the data landed — and a **built, round-trip-verified generator** that mints a valid *N*-column cortex
-for any *N*, unlocking the next phase (evolving the column count itself).
+instead of hand-designed. Two experiments are in, both pre-registered and reported honestly:
 
-**→ [Read the evolution results & the new challenges they open](results/evolving-topology.md)**
+- **Evolving the *voting topology*** on the fixed 5-column model → a **pre-registered inconclusive
+  result**. On the shipped tasks we can claim neither that voting topology matters nor that it doesn't
+  (10-object is ceiling-saturated; 77-object is noise-limited even at 10 seeds). The one real,
+  tool-grounded finding is a *zero-mean* effect — a sparse tree helps on some object poses and hurts on
+  others, cancelling in the mean. [Full write-up →](results/evolving-topology.md)
+
+- **Evolving the *column count*** → a **first, under-powered *positive*.** A grown **three-column**
+  cortex is statistically **accuracy-equivalent** to the hand-designed five-column model on 77-object
+  recognition (paired TOST, ±2 pt, Holm-corrected, *p* = 0.012) while using **≈36 % of the compute** —
+  denied a registered *pass* only because it needs ~4 % more integration steps, not on any accuracy
+  deficit. Accuracy is conserved from 2 to 5 columns; what changes is *how* the recognition is paid for
+  (parallel voting vs. serial integration time). Not yet "grown beats designed" — but the first evidence
+  that the designed column count is load-bearing for *latency*, not *accuracy*.
+  [Full write-up →](results/growing-columns.md)
+
+**→ [Where this points next — the finding in the neuroscience literature](theory/directions-from-the-frontier.md)**
 
 ## What you can explore
 
@@ -66,10 +73,15 @@ for any *N*, unlocking the next phase (evolving the column count itself).
   *growing* the architecture.
 - **[Reproduction record](results/reproduction.md)** — the results, and an honest correction (an
   early "95%" reference turned out to be a fetch-summary error; the real documented figure is 100%).
-- **[Evolution results — growing the architecture](results/evolving-topology.md)** — the first
-  grow-the-architecture experiments (voting topology, then column count): a pre-registered inconclusive
-  result, the one real zero-mean pose interaction found, the analysis-bug caught by adversarial review,
-  and the new challenges this opens.
+- **[Evolution results — voting topology](results/evolving-topology.md)** — the first
+  grow-the-architecture experiment: a pre-registered inconclusive result, the one real zero-mean pose
+  interaction found, and the analysis-bug caught by adversarial review.
+- **[Evolution results — growing the column count](results/growing-columns.md)** — the first
+  accuracy-vs-compute frontier point: grown-3 ≈ designed-5 in accuracy at ~⅓ the compute, under-powered
+  for a dominance claim, with the completeness guard and analyzer re-verification that back the number.
+- **[Directions from the frontier](theory/directions-from-the-frontier.md)** — the grown-columns
+  finding read against the neuroscience literature (cortical redundancy & degeneracy, efficient/sparse
+  coding, the speed–accuracy tradeoff, developmental encoding), and the best next experiments.
 - **[ALIFE 2026 abstract](paper/alife2026-abstract.md)** — the work-in-progress writeup.
 
 ## The idea, in one paragraph
