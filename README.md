@@ -81,7 +81,12 @@ instead of hand-designed. Two experiments are in, both pre-registered and report
   for a dominance claim, with the completeness guard and analyzer re-verification that back the number.
 - **[Directions from the frontier](theory/directions-from-the-frontier.md)** — the grown-columns
   finding read against the neuroscience literature (cortical redundancy & degeneracy, efficient/sparse
-  coding, the speed–accuracy tradeoff, developmental encoding), and the best next experiments.
+  coding, the speed–accuracy tradeoff, developmental encoding), and the best next experiments
+  (*algorithm-level*: the capabilities the system lacks).
+- **[Directions at the implementation level](theory/directions-implementation-level.md)** — a companion
+  assessing biophysical-realism ideas (dendritic units, bio-plausible backprop, neuromodulation, the
+  genomic bottleneck): which add capability to a *functional* model and which are realism for a sister
+  project — plus a fact-check of two recent-research claims.
 - **[ALIFE 2026 abstract](paper/alife2026-abstract.md)** — the work-in-progress writeup.
 
 ## The idea, in one paragraph
