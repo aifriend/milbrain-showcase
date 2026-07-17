@@ -57,6 +57,14 @@ instead of hand-designed. Two experiments are in, both pre-registered and report
   that the designed column count is load-bearing for *latency*, not *accuracy*.
   [Full write-up →](results/growing-columns.md)
 
+- **Why the accuracy was flat** → a **verified negative that reframes the program.** Re-analysing the same
+  data (no new compute), the columns turn out to make their errors on the *same* objects — inter-column
+  **error correlation φ ≈ 0.75**. So *every* column count fails on the same ~7–10% of episodes; adding
+  identical columns buys redundancy, not accuracy. The bottleneck is error **correlation**, not column
+  **count** — and a cheap pilot showed the obvious fix (spread the sensory patches apart) is geometrically
+  self-defeating on small objects. The lever for capability is column *diversity*, not *quantity*.
+  [Full write-up →](results/correlation-bottleneck.md)
+
 **→ [Where this points next — the finding in the neuroscience literature](theory/directions-from-the-frontier.md)**
 
 ## What you can explore
@@ -79,6 +87,10 @@ instead of hand-designed. Two experiments are in, both pre-registered and report
 - **[Evolution results — growing the column count](results/growing-columns.md)** — the first
   accuracy-vs-compute frontier point: grown-3 ≈ designed-5 in accuracy at ~⅓ the compute, under-powered
   for a dominance claim, with the completeness guard and analyzer re-verification that back the number.
+- **[The correlation bottleneck — why more columns don't help](results/correlation-bottleneck.md)** — the
+  verified negative behind the flat accuracy: inter-column error correlation φ ≈ 0.75 (columns fail
+  together), the oracle ceiling and realizable-fusion checks, and the small-object geometry that makes the
+  simplest decorrelation lever a dead end.
 - **[Directions from the frontier](theory/directions-from-the-frontier.md)** — the grown-columns
   finding read against the neuroscience literature (cortical redundancy & degeneracy, efficient/sparse
   coding, the speed–accuracy tradeoff, developmental encoding), and the best next experiments

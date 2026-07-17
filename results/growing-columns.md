@@ -97,8 +97,9 @@ Consistent with the [E0 close-out](evolving-topology.md#the-methodology-is-the-r
 
 *Status: a first, pre-registered, **under-powered positive** — grown-3 is accuracy-equivalent to
 designed-5 at ~⅓ the compute, short of a registered pass only on integration-step latency. Not yet a
-dominance result; that needs fresh-seed confirmation and a latency-honest compute model. Where this
-points next — and how it connects to cortical redundancy, efficient coding, and the speed–accuracy
-tradeoff in the neuroscience literature — is taken up in
-[the directions report](../theory/directions-from-the-frontier.md). Full experimental detail and the
-analysis live in the private implementation repository.*
+dominance result; that needs fresh-seed confirmation and a latency-honest compute model. **Why accuracy is
+flat from 2 to 5 columns is answered next — the columns fail on the same objects (error correlation
+φ ≈ 0.75): [the correlation bottleneck](correlation-bottleneck.md).** Where this points next — and how it
+connects to cortical redundancy, efficient coding, and the speed–accuracy tradeoff in the neuroscience
+literature — is taken up in [the directions report](../theory/directions-from-the-frontier.md). Full
+experimental detail and the analysis live in the private implementation repository.*
