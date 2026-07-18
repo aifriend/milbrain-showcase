@@ -290,8 +290,17 @@ The agency result (§5) carries its own, and they are sharper. The factored mode
 alternative cannot recover it, not that structure is discovered. The composition rule is **supplied, not
 learned**: three attempts to learn it failed, which makes the caveat empirically load-bearing rather than
 theoretical. The monolithic arm is a single function class, so data starvation is ruled out but a different
-function class is not. The decisive comparison has now been replicated across 27 configurations (3 objects ×
-3 obstacle sizes × 3 seeds), which removes the single-setting concern but not the world: this remains 2D and
+function class **has now been tested**. Re-running the decisive protocol unchanged except for the monolith's
+model — a two-layer neural network in place of the nearest-neighbour learner, same features, same data, same
+planner, across 15 evaluable configurations — leaves the result intact: the factored advantage on novel
+arrangements is **+48.1 points** with the original monolith and **+48.6 points** with the neural one, holding
+in every configuration under both (the difference is −0.6 pt, *t* = −0.31). The monolith's deficit is
+therefore not an artifact of its function class. One boundary on that: with a *better-conditioned training
+distribution* (balanced, drawn from the planner's own state distribution rather than random exploration) a
+neural monolith does improve markedly in this world — so what the data cannot buy, a better-chosen data
+*distribution* partly can, while still leaving it short of the factored model. The decisive comparison has
+also been replicated across 27 configurations (3 objects × 3 obstacle sizes × 3 seeds), which removes the
+single-setting concern but not the world: this remains 2D and
 quasi-static, with one obstacle at a time, 24 episodes per cell, and multi-object scenes untested. The
 new-object result is a marginal pass whose mean hides per-configuration spread, and its factored arm is given
 object geometry. The impossibility result is likewise *local*: it establishes that composition is not learnable

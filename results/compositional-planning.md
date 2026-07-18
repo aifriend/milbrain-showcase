@@ -86,7 +86,8 @@ be by construction — but it means the informative content is narrower than "st
 what the structure supplies for free.*
 
 Three further caveats stated plainly: the composition rule is **hand-given, not learned**; the monolithic arm
-is one function class (data starvation is ruled out, a different function class is not); and the table above is
+is one function class — data starvation was ruled out, and a different function class **has since been ruled
+out too** (see below); and the table above is
 a single configuration at n = 30, a ±18 point confidence interval — far too narrow to explain the 50-vs-3 gap,
 but not by itself evidence that the result survives other conditions. The next section tests exactly that.
 
@@ -137,6 +138,28 @@ own. The rule was fixed in advance and is not being moved now that the numbers e
 model is given the new object's **shape**, which its composition rule needs — defensible, because in the full
 system that shape is exactly what the recognition side produces, but it is an architectural assumption rather
 than something learned here.
+
+### Was the monolith just a weak learner?
+
+The obvious objection to all of this is that the monolithic model was a nearest-neighbour learner — perhaps
+the deficit says more about that choice than about monolithic models. That objection has now been tested
+directly, by re-running the decisive comparison unchanged except for the monolith's model: a two-layer neural
+network, same features, same data, same planner, across 15 evaluable configurations.
+
+| monolith's model | its success on novel arrangements | factored's advantage |
+|---|---|---|
+| nearest-neighbour (as originally reported) | 8.6 % | **+48.1 pt** (15/15 configurations) |
+| **neural network** | 8.1 % | **+48.6 pt** (15/15 configurations) |
+
+The gap does not move (−0.6 pt, *t* = −0.31). **The monolith's deficit is structural, not an artifact of its
+function class** — which converts a caveat we had flagged as untested into a tested one.
+
+One honest boundary. In a *separate* setting that trains on a better-conditioned distribution — balanced, and
+drawn from the planner's own states rather than random exploration — a neural monolith improves markedly,
+recovering roughly half the ground between an interaction-blind model and the factored one. So the data
+*distribution* buys something that sheer data volume did not. It still leaves the monolith well short, and it
+does not touch the comparison above, which holds distribution fixed. But it means "a better learner cannot
+help at all" would be the wrong lesson to take from this.
 
 ### One correction this forced
 
