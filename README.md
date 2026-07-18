@@ -40,7 +40,7 @@ reproduction record.*
 ## Growing the architecture — results so far
 
 The reproduction is the baseline; the actual research is whether the architecture can be **grown**
-instead of hand-designed. Two experiments are in, both pre-registered and reported honestly:
+instead of hand-designed. Four results are in, all pre-registered and reported honestly:
 
 - **Evolving the *voting topology*** on the fixed 5-column model → a **pre-registered inconclusive
   result**. On the shipped tasks we can claim neither that voting topology matters nor that it doesn't
@@ -64,6 +64,15 @@ instead of hand-designed. Two experiments are in, both pre-registered and report
   **count** — and a cheap pilot showed the obvious fix (spread the sensory patches apart) is geometrically
   self-defeating on small objects. The lever for capability is column *diversity*, not *quantity*.
   [Full write-up →](results/correlation-bottleneck.md)
+
+- **From perception to action** → the **first positive architectural result.** Following the recognition
+  finding into a world the agent *changes*: an **object-factored** model — per-object dynamics in each object's
+  own reference frame, plus a composition rule — plans successfully on **novel arrangements** (50%) where a
+  monolithic learner given the same features, the same planner and **10× the data** collapses (3–7%). The
+  deficit is *structural*, not data starvation. Reference frames pay off in **action**, on the axis the static
+  task couldn't test. The load-bearing caveat: the composition rule is *supplied*, and three pre-registered
+  attempts to learn it all failed — locating the limit in the **world's contact variability**, not the learner.
+  [Full write-up →](results/compositional-planning.md)
 
 **→ [Where this points next — the finding in the neuroscience literature](theory/directions-from-the-frontier.md)**
 
@@ -91,6 +100,11 @@ instead of hand-designed. Two experiments are in, both pre-registered and report
   verified negative behind the flat accuracy: inter-column error correlation φ ≈ 0.75 (columns fail
   together), the oracle ceiling and realizable-fusion checks, and the small-object geometry that makes the
   simplest decorrelation lever a dead end.
+- **[Structure, not count — compositional planning](results/compositional-planning.md)** — the agency arc:
+  finding a regime where planning is genuinely required, the decisive factored-vs-monolithic transfer test
+  (and why 10× data doesn't rescue the monolith), the three failed attempts to *learn* the composition rule,
+  and the horizon-vs-contact-variability pincer that makes the world — not the learner — the binding
+  constraint.
 - **[Directions from the frontier](theory/directions-from-the-frontier.md)** — the grown-columns
   finding read against the neuroscience literature (cortical redundancy & degeneracy, efficient/sparse
   coding, the speed–accuracy tradeoff, developmental encoding), and the best next experiments

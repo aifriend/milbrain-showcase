@@ -1,4 +1,4 @@
-# Growing the Thousand-Brains Architecture: Column Count Is Not the Accuracy Lever — Error Correlation Is
+# Growing the Thousand-Brains Architecture: Count Is Not the Lever — Error Correlation Caps Perception, and Object-Factored Structure Pays in Action
 
 **Jose B. López** · *[affiliation — TODO]* · *[email — TODO]*
 *Interactive results, learned models & data:* <https://aifriend.github.io/milbrain-showcase/>
@@ -22,9 +22,18 @@ to the designed five-column model at ~⅓ the compute. The natural remedy — de
 spreading their sensory patches — proves geometrically self-defeating: any spread wide enough to decorrelate
 the median object pushes the patch off the small objects. The lever for capability is column **diversity**,
 not **count** — a concrete, falsifiable refinement of "more columns, more robust," and a caution for anyone
-scaling brain-like ensembles. We contribute the result, the reproduction and grow-the-architecture
-infrastructure, and a verification methodology that repeatedly caught verdict-flipping analysis errors before
-they became claims.
+scaling brain-like ensembles. Because that negative is a statement about a *saturated task*, we then tested the
+architecture on a capability the task cannot measure: acting on a world the agent changes. There the same
+theory's other commitment pays off. An **object-factored** model — per-object dynamics in each object's own
+reference frame, composed through an explicit rule — plans successfully on **novel arrangements** (50%) where a
+featurization-matched monolithic learner given the same planner and **10× the data** collapses (3–7%), making
+the deficit structural rather than data-limited. Three pre-registered attempts to *learn* the composition rule
+all failed, and their shared mechanism is informative: long-horizon planning compounds per-step model error
+geometrically, while the world's contact variability equals the signal a learner would need — placing the
+ceiling in the environment, not the model. Across both arcs the architectural variable that matters is **how a
+model is factored, not how many near-identical pieces it has**. We contribute these results, the reproduction
+and grow-the-architecture infrastructure, and a verification methodology that repeatedly caught verdict-flipping
+analysis errors before they became claims.
 
 ## 1. Introduction
 
@@ -146,7 +155,68 @@ partial data; the completeness guard fired for real, rejecting an incomplete dat
 decorrelation pilot cost ~$2 to learn that a ~$40 experiment grid would hit a wall. No infrastructure failure
 (a preemption, a resource stall) ever produced a *wrong* number — each surfaced as an honest incomplete.
 
-## 5. Discussion
+## 5. From perception to action: object-factored structure buys compositional planning
+
+§4 established that a saturated static task cannot discriminate architectures. That is a statement about the
+*task*, and it carries an obligation: to test the architecture on a capability the task structurally cannot
+measure. We therefore moved to a setting where the agent *changes* the world, and asked a question the
+recognition experiments could not pose — does object-factored **structure** buy anything, on an axis where
+column *count* bought nothing?
+
+**Setup.** A 2D quasi-static tabletop world (a lightweight physics sandbox, deliberately not Monty): an agent
+pushes a rigid object toward a target pose with discrete pushes, around a static obstacle. Two model families
+compete under a deliberately fair matching — same planner, same object-relative features, same data budget. The
+**factored** model stores push → displacement per object in that object's own reference frame (rotation-
+equivariant by construction) and composes object with obstacle through an explicit rule; the **monolithic**
+model, given identical features, must learn the joint interaction from experience. As in §4, every gate was
+committed to version control before the corresponding model was fitted.
+
+**A planning regime has to be earned.** The honest first finding was that planning was not required: a greedy
+one-step policy solved free-space push-to-pose outright (100%). Introducing an obstacle did not help — across
+obstacle sizes, lookahead never beat greedy, the task passing directly from "greedy solves it" to "nothing
+solves it." The mechanism is a horizon–geometry mismatch: a push moves ~4 cm, so a 3-step lookahead sees
+~12 cm, while an obstacle large enough to create a local minimum requires a longer detour to escape than the
+planner can see. The regime opened only at long horizon, which the factored model uniquely affords: it predicts
+analytically in tens of microseconds against ~0.3 ms for a physics rollout, making a 12-step plan cheap for the
+structured model and ~216 s per plan step for the simulator. Greedy 16.7% → 12-step 50.0% (+33 pt).
+
+**The decisive comparison.** Models were scored on transfer to novel arrangements, split on the target's
+orientation offset relative to the route. The split is deliberate: a world-bearing split would be vacuous,
+since the monolith's inputs are target-relative and that distribution is invariant across bands, so it would
+"transfer" for free. This split instead moves the obstacle into an unseen region of the model's own input
+space.
+
+| model (n = 30 per cell) | familiar | novel |
+|---|---|---|
+| factored (per-object model + composition rule) | **53.3 %** | **50.0 %** |
+| monolithic (same features, planner, data) | 10.0 % | 3.3 % |
+| monolithic, 10× data | 3.3 % | 6.7 % |
+| greedy (context) | 3.3 % | — |
+
+The factored model transfers (50 vs 53, within noise); the monolith collapses; and the fairness arm that exists
+to pre-empt the obvious objection does its job — **10× data does not rescue it**, so the deficit is structural
+rather than data starvation.
+
+**Three pre-registered attempts to learn the composition rule, all failed.** The factored arm is handed its
+composition rule, which is the load-bearing caveat, so we attacked it with three representations. (i) A learned
+blocking classifier reached 75.7% per-step agreement with the exact rule — compounded over a 10-step rollout
+that is ~6% fully-correct plans, and the planner routes confidently through solid matter; long-horizon
+composition demands per-step accuracy well above 95%. (ii) Learning obstacle *occupancy* by carving free space
+was provably safe in the fatal direction (0.00% false-free at every data volume) but **degraded with
+experience** — shape overlap 0.50 → 0.29 as data grew fourfold — because carving is monotone, so each noisy
+push can punch a *permanent* hole; errors accumulate irreversibly rather than averaging out. (iii) A continuous
+contact model, aimed at the crude `overlap ⇒ stop` schema that caps every arm, predicted *worse* than the crude
+schema (0.043 vs 0.026) with tripled data moving the error by 0.0001. The measured reason: within a small cell
+of relative pose, at fixed action, contact outcomes spread ±2.6 cm — and the crude schema's error is 2.6 cm.
+The schema already sits on the noise floor.
+
+**Reading.** The three failures close as a pincer: the task's horizon *demands* ~95% per-step validity, while
+the world *permits* learned models only 76–85%, with errors in the fatal direction — and the contact
+measurement shows the residual is not predictable at the resolution the data supports, because the variability
+is intrinsic to contact rather than a deficiency of the model. The positive result therefore stands with its
+ceiling explained rather than asserted, and the constraint is located in the environment, not the learner.
+
+## 6. Discussion
 
 **Count vs. diversity.** The headline is a sharpening of TBT intuition. "More columns, more robust" holds only
 to the extent the columns' errors are *decorrelated*; here they are near-duplicates and their failures
@@ -158,31 +228,64 @@ cortex, where robustness is attributed to *diverse* columns, not merely many.
 headroom for any architectural change to register — which is *why* nothing moves, and is itself informative.
 It relocates the interesting question from "how many columns?" to capabilities the static task cannot measure:
 planning and acting on a world whose state the agent changes, compositional multi-object scenes, abstraction
-over non-spatial concept spaces. That is where a grown/diverse architecture could plausibly pay, and it is the
-direction this work points.
+over non-spatial concept spaces. That is where a grown/diverse architecture could plausibly pay — and §5
+reports what happened when we followed that pointer rather than merely gesturing at it.
+
+**Count vs. structure.** The two arcs answer different questions and reach opposite verdicts, which is the
+paper's through-line. Adding near-identical columns is *quantitative* change and buys nothing once their errors
+co-occur. Factoring a model by object — the same theory's other commitment — is *qualitative* change, and it
+buys transfer that an equally-informed monolithic learner cannot reach with ten times the data. Reference
+frames earn their keep in **action**, on precisely the axis a saturated recognition benchmark cannot test. The
+appropriate summary of both results together is not "brain-like architecture helps" or "doesn't", but: *the
+architectural degree of freedom that matters is how a model is factored, not how many pieces it has.*
+
+**Ceilings are properties of environments.** In both arcs, progress stopped at a limit that was a measurable
+property of the setting rather than of the model: inter-column error correlation φ≈0.75 in perception, and
+contact variability equal to the useful signal in action. Both were measurable *before* the modelling effort
+that they capped. This suggests a cheap and underused discipline — estimate the environment-side floor
+(irreducible variance at fixed input, or error correlation among ensemble members) before investing in a larger
+model, because where that floor binds, no learner clears it.
 
 **For scaling brain-like ensembles generally.** Measure inter-module error correlation before scaling. A high
 value means each added unit is redundancy; an ensemble's real capacity is set by how independent its members'
 failures are, not by their number.
 
-## 6. Limitations
+## 7. Limitations
 
 One model family (Monty v0.42.0), one near-ceiling task, and — for the grown-vs-designed frontier — an
 under-powered eight-seed design that certifies equivalence only for grown-3. The correlation φ is
 task-specific; a higher-error regime (occlusion, heavier noise, harder objects) could lower it, and is exactly
 where decorrelation could pay. The decorrelation pilot tested only the geometric (patch-spread) lever; the
-scale/feature levers remain open. These are the natural next experiments, not caveats that undercut the floor
-established here.
+scale/feature levers remain open.
 
-## 7. Conclusion
+The agency result (§5) carries its own, and they are sharper. The factored model's transfer is substantially
+*by construction* — an inductive bias is meant to be — so the informative content is that the monolithic
+alternative cannot recover it, not that structure is discovered. The composition rule is **supplied, not
+learned**: three attempts to learn it failed, which makes the caveat empirically load-bearing rather than
+theoretical. The monolithic arm is a single function class, so data starvation is ruled out but a different
+function class is not. And the scale is small — one object, one obstacle configuration, one training seed,
+n = 30 per cell (binomial CI ≈ ±18 pt), in a 2D quasi-static world. The impossibility result is likewise
+*local*: it establishes that composition is not learnable at the resolution this world's contact variability
+permits, not that learned composition is impossible in general. Widening the decisive comparison across seeds,
+objects and obstacle configurations is the first thing more compute should buy.
+
+## 8. Conclusion
 
 We set out to grow the Thousand-Brains architecture and found, first, that the architecture *count* axis does
 not buy accuracy on static recognition — and, crucially, *why*: the columns fail together (φ≈0.75), so the
 lever is diversity, not quantity, and the simplest way to create diversity is geometrically blocked. This is a
 clean, verified, mechanistic negative — more useful than a marginal positive — delivered with a methodology
-that caught its own errors before they became claims. The grow-the-architecture programme continues, but
-redirected: toward making columns *fail differently*, and toward capabilities a saturated recognition task
-cannot see.
+that caught its own errors before they became claims.
+
+Following that negative to the capability it pointed at, we then found its complement: on a task where the
+agent changes the world, **object-factored structure does pay**, transferring to novel arrangements that a
+featurization-matched monolith cannot reach with ten times the data. Taken together the two arcs say something
+more precise than either alone — *how* a brain-like model is factored is the architectural variable that
+matters; *how many* near-identical pieces it has is not. The remaining caveat is honest and specific: the
+composition rule is still supplied, three pre-registered attempts to learn it failed, and their shared
+mechanism places the limit in the environment's contact variability rather than in the learner. That makes the
+next question a choice of *world* rather than of model — the first time in this programme that the binding
+constraint has been something other than the architecture itself.
 
 ## References
 
