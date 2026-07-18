@@ -27,7 +27,9 @@ architecture on a capability the task cannot measure: acting on a world the agen
 theory's other commitment pays off. An **object-factored** model — per-object dynamics in each object's own
 reference frame, composed through an explicit rule — plans successfully on **novel arrangements** (50%) where a
 featurization-matched monolithic learner given the same planner and **10× the data** collapses (3–7%), making
-the deficit structural rather than data-limited. Three pre-registered attempts to *learn* the composition rule
+the deficit structural rather than data-limited. That contrast replicates across 27 configurations (3 objects ×
+3 obstacle sizes × 3 seeds), and the factored model further admits a **new object with zero interaction data**,
+which no monolithic arm manages even when handed that data. Three pre-registered attempts to *learn* the composition rule
 all failed, and their shared mechanism is informative: long-horizon planning compounds per-step model error
 geometrically, while the world's contact variability equals the signal a learner would need — placing the
 ceiling in the environment, not the model. Across both arcs the architectural variable that matters is **how a
@@ -197,6 +199,31 @@ The factored model transfers (50 vs 53, within noise); the monolith collapses; a
 to pre-empt the obvious objection does its job — **10× data does not rescue it**, so the deficit is structural
 rather than data starvation.
 
+**Replication and a new object.** Because the comparison above is a single configuration, it was re-run across
+3 objects × 3 obstacle sizes × 3 seeds (27 configurations, decision rule pre-registered and committed before
+fitting). The factored advantage held at ≥20 pt in **16 of 16** configurations where the task is solvable at
+all, median **+47.9 pt**, factored 54.4% vs monolithic 8.1% on novel arrangements. The pre-registered
+evaluability exclusion is not load-bearing: counting all 27 configurations, including the 11 where nothing
+solves the task, the effect still holds in 81.5% (median +29.2 pt). The sweep also maps the planning regime,
+which shrinks as the obstacle grows (9/9 solvable configurations at the smallest, 1/9 at the largest).
+
+The factored account makes a further prediction a monolith cannot: a **new object** should need only its own
+free-space model, inheriting the composition rule with no observation of it interacting with anything. Training
+interaction on one object and testing on two unseen ones gives factored **28.5%** (against 41.7% on its
+training object) versus **≤4.2%** for every monolithic arm — including one *given* full interaction data on the
+new object — and a 500-push free-space model does as well as a 2500-push one. This pass is **marginal**: the
+13.2 pt drop sits against a 15 pt pre-registered tolerance and three of six individual configurations exceed
+it. The factored arm is also given the new object's geometry, which its composition rule requires; in the full
+system that geometry is the recognition side's output, but here it is an assumption, not a learned result.
+
+**A correction the replication forced.** Across all 27 configurations the monolithic model never exceeded
+12.5% **in either band**, and the arm handed interaction data on a new object reached 4.2%. The intuitive
+reading — that the monolith learns the familiar arrangements and then fails to generalize — is therefore not
+what the data shows; it never worked anywhere. The defensible claim is narrower: *object-factored structure
+solves this task where a monolithic learner cannot do it at all.* The headline is unaffected (novel-arrangement
+success and the failure of 10× data both stand, now across 27 configurations), but the mechanism is not the
+intuitive one.
+
 **Three pre-registered attempts to learn the composition rule, all failed.** The factored arm is handed its
 composition rule, which is the load-bearing caveat, so we attacked it with three representations. (i) A learned
 blocking classifier reached 75.7% per-step agreement with the exact rule — compounded over a 10-step rollout
@@ -263,11 +290,13 @@ The agency result (§5) carries its own, and they are sharper. The factored mode
 alternative cannot recover it, not that structure is discovered. The composition rule is **supplied, not
 learned**: three attempts to learn it failed, which makes the caveat empirically load-bearing rather than
 theoretical. The monolithic arm is a single function class, so data starvation is ruled out but a different
-function class is not. And the scale is small — one object, one obstacle configuration, one training seed,
-n = 30 per cell (binomial CI ≈ ±18 pt), in a 2D quasi-static world. The impossibility result is likewise
-*local*: it establishes that composition is not learnable at the resolution this world's contact variability
-permits, not that learned composition is impossible in general. Widening the decisive comparison across seeds,
-objects and obstacle configurations is the first thing more compute should buy.
+function class is not. The decisive comparison has now been replicated across 27 configurations (3 objects ×
+3 obstacle sizes × 3 seeds), which removes the single-setting concern but not the world: this remains 2D and
+quasi-static, with one obstacle at a time, 24 episodes per cell, and multi-object scenes untested. The
+new-object result is a marginal pass whose mean hides per-configuration spread, and its factored arm is given
+object geometry. The impossibility result is likewise *local*: it establishes that composition is not learnable
+at the resolution this world's contact variability permits, not that learned composition is impossible in
+general.
 
 ## 8. Conclusion
 

@@ -70,7 +70,9 @@ instead of hand-designed. Four results are in, all pre-registered and reported h
   own reference frame, plus a composition rule — plans successfully on **novel arrangements** (50%) where a
   monolithic learner given the same features, the same planner and **10× the data** collapses (3–7%). The
   deficit is *structural*, not data starvation. Reference frames pay off in **action**, on the axis the static
-  task couldn't test. The load-bearing caveat: the composition rule is *supplied*, and three pre-registered
+  task couldn't test. **Replicated across 27 configurations** (3 objects × 3 obstacle sizes × 3 seeds), and the
+  factored model **admits a new object with zero interaction data** where no monolithic arm does — even one
+  handed that data. The load-bearing caveat: the composition rule is *supplied*, and three pre-registered
   attempts to learn it all failed — locating the limit in the **world's contact variability**, not the learner.
   [Full write-up →](results/compositional-planning.md)
 

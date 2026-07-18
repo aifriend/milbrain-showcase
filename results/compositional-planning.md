@@ -86,9 +86,70 @@ be by construction — but it means the informative content is narrower than "st
 what the structure supplies for free.*
 
 Three further caveats stated plainly: the composition rule is **hand-given, not learned**; the monolithic arm
-is one function class (data starvation is ruled out, a different function class is not); and at n = 30 the
-binomial confidence interval is ±18 points — wide enough that the 53-vs-50 transfer gap is noise (which is what
-"transfers" means here), though far too narrow to explain the 50-vs-3 gap.
+is one function class (data starvation is ruled out, a different function class is not); and the table above is
+a single configuration at n = 30, a ±18 point confidence interval — far too narrow to explain the 50-vs-3 gap,
+but not by itself evidence that the result survives other conditions. The next section tests exactly that.
+
+## Does it replicate? And does it extend to an object never seen?
+
+A single favourable configuration is the standard way a result like this turns out to be nothing. So the same
+contrast was re-run across **three objects × three obstacle sizes × three seeds** — 27 independent
+configurations, with the decision rule fixed and published before any model was fitted.
+
+| | result |
+|---|---|
+| configurations where the factored advantage held (≥20 pt) | **16 of 16** where the task is solvable at all |
+| median advantage | **+47.9 points** |
+| factored vs monolithic on novel arrangements | **54.4% vs 8.1%** |
+| *same figures counting **every** configuration, including unsolvable ones* | *81.5%, median +29.2 pt* |
+
+That last line is the one that matters. Eleven of the 27 configurations sit outside the planning regime
+entirely — the obstacle is large enough that nothing solves the task — and they were excluded by a criterion
+fixed in advance. But even counting them, the effect still holds in over four-fifths of configurations. **The
+exclusion is not doing the work.** The original result was not a favourable-configuration artifact.
+
+The sweep also mapped where planning is possible at all: the regime shrinks as the obstacle grows (at the
+smallest obstacle 9 of 9 configurations are solvable, at the largest only 1 of 9), which incidentally shows the
+originally-reported setting sat in the middle of the range rather than at its easy end.
+
+**And the new object.** Object-factored structure makes a specific prediction that a monolithic model cannot:
+a *new* object should need only its own free-space model, inheriting the composition rule unchanged, with **no
+observation of it interacting with anything**. Tested by training interaction knowledge on one object and
+handing the planner two objects it had never encountered:
+
+| model, planning with a new object | success |
+|---|---|
+| factored, on its original training object (reference) | 41.7 % |
+| **factored, new object, zero interaction data** | **28.5 %** |
+| factored, new object, free-space model from only 500 pushes | 28.5 % |
+| monolithic, applied to the new object | 4.2 % |
+| monolithic, refit on the same free-space data | 1.4 % |
+| **monolithic, *given* full interaction data on the new object** | **4.2 %** |
+
+The prediction holds: the factored model plans for an object it has never seen interact with anything, beating
+every monolithic arm in all six configurations — including one **handed** the interaction data it lacked. And
+a free-space model from 500 pushes does as well as one from 2500, so the data it *does* need is genuinely
+cheap.
+
+Two honesty notes. This pass is **marginal**: the drop from 41.7% to 28.5% is 13.2 points against a
+pre-registered tolerance of 15, and three of the six individual configurations exceed that tolerance on their
+own. The rule was fixed in advance and is not being moved now that the numbers exist. Second, the factored
+model is given the new object's **shape**, which its composition rule needs — defensible, because in the full
+system that shape is exactly what the recognition side produces, but it is an architectural assumption rather
+than something learned here.
+
+### One correction this forced
+
+Across all 27 configurations the monolithic model never exceeded 12.5% **in either band** — familiar
+arrangements included — and the version handed interaction data on a new object reached only 4.2%. So the
+tidy story "the monolith learns the familiar case and then fails to generalize" is **not what the data shows**.
+It never worked anywhere. The accurate claim is narrower and blunter:
+
+> Object-factored structure solves this task where a monolithic learner cannot do it at all.
+
+That does not weaken the headline — the factored model's novel-arrangement success and the failure of 10× data
+to close the gap both stand, now across 27 configurations instead of one — but the mechanism is different from
+the intuitive one, and reporting the intuitive version would have been wrong.
 
 ## Three attempts to learn the composition rule — all failed
 
@@ -160,10 +221,13 @@ the environment, measurable in advance — which is a cheap check worth running 
   blaming the planner: at horizon 12, a "90% accurate" model is already unusable. And errors in the fatal
   direction (predicting free where the world is blocked) matter far more than average error — a metric that
   averages over both will hide exactly the failure that kills you.
-- **Honest limits.** One object, one obstacle configuration, one training seed, n = 30 per cell (±18 pt), in a
-  2D quasi-static world. The composition rule is supplied, not discovered. What is established is a
-  well-measured *inductive-bias* result plus a well-measured *impossibility* in this specific world — not a
+- **Honest limits.** Three objects, three obstacle sizes, three seeds — 27 configurations, so no longer a
+  single-setting result, but still a 2D quasi-static world with one obstacle at a time and 24 episodes per
+  cell. The composition rule is supplied, not discovered, and the factored model is given object geometry. The
+  new-object result is a marginal pass whose mean hides real per-configuration spread. What is established is
+  a replicated *inductive-bias* result plus a well-measured *impossibility* in this specific world — not a
   general law about learned composition, which remains open in settings with more predictable contact.
+  Multi-object scenes (three or more) remain untested.
 
 ---
 
