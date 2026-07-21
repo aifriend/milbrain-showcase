@@ -40,7 +40,7 @@ reproduction record.*
 ## Growing the architecture — results so far
 
 The reproduction is the baseline; the actual research is whether the architecture can be **grown**
-instead of hand-designed. Four results are in, all pre-registered and reported honestly:
+instead of hand-designed. Five results are in, all pre-registered and reported honestly:
 
 - **Evolving the *voting topology*** on the fixed 5-column model → a **pre-registered inconclusive
   result**. On the shipped tasks we can claim neither that voting topology matters nor that it doesn't
@@ -74,6 +74,17 @@ instead of hand-designed. Four results are in, all pre-registered and reported h
   factored model **admits a new object with zero interaction data** where no monolithic arm does — even one
   handed that data. The load-bearing caveat: the composition rule is *supplied*, and three pre-registered
   attempts to learn it all failed — locating the limit in the **world's contact variability**, not the learner.
+  [Full write-up →](results/compositional-planning.md)
+
+- **The environment search that followed** → a **negative, reported as one.** The page above relocates the
+  open question to the choice of *environment*. Seven designs were then screened against pre-registered
+  criteria and **none could host the question**. Three findings survive: interaction-forcing tracks *occupancy
+  density*, not task description (predicted, then confirmed by altering only occupancy — 1% → 36%);
+  environments whose constraints are *ordering* constraints **cannot teach their own rule**, because an agent
+  respecting them encounters violations 0% of the time; and one design passed a non-triviality check by 90
+  points while being solved perfectly by a one-line heuristic, withdrawing every result measured in it. Two
+  attempts to decide whether the required properties are *jointly* satisfiable both failed with the
+  **instrument**, not the environment, producing the verdict — so we do **not** claim they are unsatisfiable.
   [Full write-up →](results/compositional-planning.md)
 
 **→ [Where this points next — the finding in the neuroscience literature](theory/directions-from-the-frontier.md)**
