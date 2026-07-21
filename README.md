@@ -126,6 +126,12 @@ instead of hand-designed. Five results are in, all pre-registered and reported h
   assessing biophysical-realism ideas (dendritic units, bio-plausible backprop, neuromodulation, the
   genomic bottleneck): which add capability to a *functional* model and which are realism for a sister
   project — plus a fact-check of two recent-research claims.
+- **[Verifying four implementation-level claims](theory/verifying-implementation-claims.md)** — the
+  companion *verification* pass: four proposed directions checked against primary sources by adversarial
+  research. Two survived in altered form, one was refuted, one was unsupported and partly inverted — and
+  the failure mode was **inflation of real work**, not fabrication. Includes the actual published ceiling
+  for bio-plausible credit assignment, why the genomic bottleneck is a regularization result rather than a
+  compute one, and the control our own grown-3 claim still owes.
 - **[ALIFE 2026 abstract](paper/alife2026-abstract.md)** — the work-in-progress writeup.
 
 ## The idea, in one paragraph

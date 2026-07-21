@@ -9,6 +9,16 @@ Monty and which are realism aimed at a different kind of model. Every citation b
 (32/32 confirmed); the two headline claims were independently fact-checked, and one correction lands on
 this project's own earlier over-skepticism.*
 
+> **Since this page was written, a later proposal revisited three of these four topics** — dendritic /
+> temporal-filtering units, bio-plausible credit assignment, and the genomic bottleneck — asserting
+> stronger versions of each. Four adversarial research passes checked those against primary sources, and
+> the outcome **confirms this page's wording where it matters**: §4's careful framing of the genomic
+> bottleneck as a *regularizer and transfer booster* is exactly what the literature supports, and the later
+> proposal's stronger "equal accuracy at lower compute" reading is not. The new pass adds the actual
+> published ceiling for bio-plausible credit assignment — far below what such proposals usually imply — and
+> a control this project's own grown-3 result still owes. See
+> **[Verifying four implementation-level claims](verifying-implementation-claims.md)**.
+
 ---
 
 ## The fork that organizes everything: two levels
