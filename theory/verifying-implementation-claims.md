@@ -107,11 +107,29 @@ et al., Nat Commun 9:2100 (2018) — assigns them arousal and broad cortical act
 in NREM sleep**."* The claim needs matrix bursts to mean surprise. In the only matrix-specific dataset,
 burst mode is the *sleep* mode.
 
-**"Restart" is unsourced.** Rikhye, Gilra & Halassa (Nat Neurosci 2018) greps: `reset` 0, `restart` 0,
-`replay` 0 — with positive controls firing (`switch` 63, `suppress` 80). The paper argues the opposite:
+**"Restart" is not an empirical finding — and tracing it corrected us.** In the experimental literature the
+word is simply absent: Rikhye, Gilra & Halassa (Nat Neurosci 2018) greps give `reset` 0, `restart` 0,
+`replay` 0, with positive controls firing (`switch` 63, `suppress` 80). That paper argues the opposite:
 *"it would be computationally efficient to simply re-engage the same functional ensemble rather than
-generate a new one de novo."* The word most likely comes from Bouret & Sara's **locus coeruleus** "network
-reset" (Trends Neurosci 2005) — noradrenergic, not thalamic.
+generate a new one de novo."*
+
+We initially guessed the word had leaked from Bouret & Sara's **locus coeruleus** "network reset" (Trends
+Neurosci 2005). **That guess was wrong**, and the correction is instructive. The claim traces cleanly to
+Max Bennett, *An Attempt at a Unified Theory of the Neocortical Microcircuit in Sensory Cortex*, Frontiers
+in Neural Circuits 14:40 (2020) — a **theory** paper, which does say *"it resets sequences within L2/3-PY
+neurons"* and, on the cell identity, *"I speculate that these HTC cells are in fact the same as the
+multiareal matrix cells."* Bennett labels his own epistemic status throughout: *"I propose," "I speculate,"
+"Although far from conclusive..."*
+
+Our search covered the **empirical** thalamus literature and missed the **theory** literature, which is
+where the claim actually lived.
+
+**This does not rescue the surprise claim, and the reason is exact.** Bennett's empirical anchor is that
+*"areas of thalamus **rich in** matrix neurons... respond selectively to unexpected sensory stimuli."* That
+is a regional proxy, not a recording of a molecularly identified population — precisely the inferential
+step missing across this whole literature, where the functional claim attaches to nuclei and never to the
+cell class. Bennett makes that step openly, as a proposal. What reached us had converted it into *"recent
+findings identify."*
 
 **One component is real, in weakened form.** Higher-order thalamic POm input *is* causally necessary for
 whisker-evoked LTP in L2/3 barrel cortex (Gambino et al., Nature 515:116–119, 2014; mechanism in Williams &
@@ -244,12 +262,23 @@ Stated rather than softened, because a verification document that hides its own 
   mismatch negativity, dopaminergic reward-prediction error — **were never retrieved** and are not relied
   on here.
 
-Additional claims arrived during review that are **not** incorporated anywhere on this site because they
-were not verified: a specific 2020 attribution for the matrix-neuron hypothesis, a high-threshold-bursting
-/ alpha-rhythm account of matrix firing, and a "Jacobian lens / J-space" workspace result. The first two
-are plausible-sounding and may well point at real literature; the third supplied no citation. All three
-carry the same register — *"verified," "confirms"* — as the claims this page just deflated, which is
-precisely why they wait for a pass of their own.
+Three further claims arrived during review and were held back pending verification. **All three have since
+been traced, and all three resolve in the direction above** — one of them by correcting us:
+
+- **The matrix-neuron hypothesis** is Bennett (2020), a theory article, self-labelled speculation. It
+  **corrected our account of where the wording came from** (see §3) while leaving the verdict intact.
+- **The high-threshold-bursting / alpha-rhythm account of matrix firing** is the same source and the same
+  status — a proposal, not an independent finding. It also has to answer an awkward datum: in the only
+  matrix-specific recording (Honjoh et al. 2018), burst mode is the **NREM sleep** mode.
+- **"Jacobian lens / J-space"** was conceded rather than verified — the researchers reportedly say they
+  have found *"the room, not the door"* and cannot say what decides which concepts reach the workspace. So
+  "verified" was premature on the authors' own account. It stays off this site until it has a pass of its
+  own.
+
+**The rule this earns:** a claim sourced to a *Hypothesis and Theory* article is a **prediction to be
+tested**, not evidence to build on. That is a respectable thing to be, and Bennett is scrupulous about
+saying so. The failure was one layer up, where the hedges were stripped. Ask what **article type** a claim
+came from before asking whether it is true.
 
 ---
 
