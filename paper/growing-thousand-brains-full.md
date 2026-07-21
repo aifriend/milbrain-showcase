@@ -266,6 +266,18 @@ frames earn their keep in **action**, on precisely the axis a saturated recognit
 appropriate summary of both results together is not "brain-like architecture helps" or "doesn't", but: *the
 architectural degree of freedom that matters is how a model is factored, not how many pieces it has.*
 
+**The environment search that followed, and its outcome.** §5 relocates the open question to the choice of
+environment. Seven designs were subsequently screened against pre-registered criteria and none could host the
+question, each failing on a different axis. Three findings survive: interaction-forcing tracks *occupancy
+density* rather than task description (predicted from one rejection, then confirmed by altering only occupancy
+— 1.2% → 36.0%); environments whose constraints are *ordering* constraints cannot teach their own rule,
+because an agent respecting them encounters violations 0% of the time; and a design passed a non-triviality
+check by 90 points while being solved perfectly by a one-line heuristic, which withdrew every result measured
+in it. Two attempts to determine whether the required properties are *jointly* satisfiable both failed with
+the instrument, not the environment, producing the verdict — a horizon probe censored below the true value,
+then a correction that pinned the horizon by construction. We therefore do **not** claim the conjunction is
+unsatisfiable; we report that we could not build an instrument able to decide it.
+
 **Ceilings are properties of environments.** In both arcs, progress stopped at a limit that was a measurable
 property of the setting rather than of the model: inter-column error correlation φ≈0.75 in perception, and
 contact variability equal to the useful signal in action. Both were measurable *before* the modelling effort

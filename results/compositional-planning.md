@@ -254,6 +254,44 @@ the environment, measurable in advance — which is a cheap check worth running 
 
 ---
 
+## Epilogue — we followed that pointer, and it did not lead anywhere yet
+
+The page above ends by relocating the question to a choice of *world*. That search has since run, and the
+honest report is that it failed — in ways worth writing down.
+
+**Seven environment designs were screened against criteria fixed in advance. None could host the question.**
+Each failed differently: contact too unpredictable, the rule never encountered, the task solvable without
+learning anything, the planning horizon too long for any learner to keep a plan coherent.
+
+Three things did survive, and they are the reason the exercise was not wasted.
+
+**Interaction-forcing is a property of density.** How often the interaction actually decides an outcome tracks
+how crowded the environment is, not how the task is described. Predicted in advance from one world's rejection,
+then confirmed by changing *only* occupancy in another: the rule went from deciding 1% of moments to 36%.
+
+**Some worlds can never teach their own rule.** Where constraints are about *ordering* — do this before that —
+an agent that respects them never encounters a violation. The evidence a learner would need appears exactly
+0% of the time in the experience of an agent competent enough to generate it. Such an environment can look
+ideal on every other measure and still be unable to teach the thing it is built around.
+
+**A world can pass every check and still be trivial.** One design cleared the non-triviality test by ninety
+points and was then found to be solved *perfectly* by a one-line rule that learns nothing — sorting parts by
+distance and placing the nearest first. Every result measured in it was withdrawn. The check had asked whether
+*ignoring* the interaction hurt; it never asked whether some trivial *positive* strategy just worked.
+
+**And the question the search was meant to settle is still open.** Two attempts to determine whether the
+required properties can hold simultaneously both failed, and in both the *measuring instrument* produced the
+verdict rather than the environment: first a horizon probe that stopped counting below the true value, so
+every world read identically; then a fix that constrained the horizon directly, which guaranteed the answer
+before the run began. **We are not claiming the properties are jointly unsatisfiable.** We are reporting that
+we could not build an instrument able to decide it, which is a different and less satisfying statement.
+
+The search is paused rather than concluded. What it produced is a method — measure the environment before
+investing in a model, test a trivial strategy before believing a learned one, and decide in advance what a
+broken measurement would look like — and the finding that this is harder to do correctly than it appears.
+
+---
+
 *Status: a **positive structural result with a load-bearing caveat**, plus three pre-registered negatives that
 locate the caveat's cause in the environment rather than the model. The programme's live question moves from
 "can we learn the composition rule here?" — measured, and no — to "what world makes compositional structure
