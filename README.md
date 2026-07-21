@@ -40,7 +40,7 @@ reproduction record.*
 ## Growing the architecture — results so far
 
 The reproduction is the baseline; the actual research is whether the architecture can be **grown**
-instead of hand-designed. Four results are in, all pre-registered and reported honestly:
+instead of hand-designed. Five results are in, all pre-registered and reported honestly:
 
 - **Evolving the *voting topology*** on the fixed 5-column model → a **pre-registered inconclusive
   result**. On the shipped tasks we can claim neither that voting topology matters nor that it doesn't
