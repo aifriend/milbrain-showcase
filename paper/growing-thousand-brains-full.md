@@ -278,12 +278,31 @@ the instrument, not the environment, producing the verdict — a horizon probe c
 then a correction that pinned the horizon by construction. We therefore do **not** claim the conjunction is
 unsatisfiable; we report that we could not build an instrument able to decide it.
 
-**Ceilings are properties of environments.** In both arcs, progress stopped at a limit that was a measurable
+**One of those seven rejections has since been withdrawn, and the pattern extends.** The densest design — the
+one that reached 36.0% interaction-forcing — failed on the *horizon* axis, measured as demanding a 12-step
+lookahead. That axis proves to be **planner-relative**: when breadth-first search could not reach the goal
+within the horizon, the planner fell back on Manhattan distance to the target, which in a nearly-solid
+sliding-block world is not merely weak but misleading, since routes must be *opened* by displacing obstacles
+away from the goal. Substituting an estimate of cost-to-go reduces the demanded horizon to **3**, and the
+result survives a *learned* estimate (MLP, 0.762 moves held-out RMS; errors verifiably structured, neighbour
+correlation 0.311, costing ≈2 points against i.i.d. noise at matched RMS). Under the screen's own threshold
+the design now passes. The trivializing version of this test — substituting the *exact* cost-to-go, for which
+greedy descent is optimal by construction — was pre-registered as a positive control for that reason. This is
+a **fourth** instance of the instrument rather than the environment producing the verdict, and the first found
+by inspecting the planner rather than by an anomalous run.
+
+**Ceilings are properties of environments — with one important qualification.** In both arcs, progress stopped at a limit that was a measurable
 property of the setting rather than of the model: inter-column error correlation φ≈0.75 in perception, and
 contact variability equal to the useful signal in action. Both were measurable *before* the modelling effort
 that they capped. This suggests a cheap and underused discipline — estimate the environment-side floor
 (irreducible variance at fixed input, or error correlation among ensemble members) before investing in a larger
 model, because where that floor binds, no learner clears it.
+
+The qualification is the horizon result above. A quantity can *look* like an environment property and be a
+property of the measuring apparatus: the demanded horizon was reported as a fact about the world and was in
+substantial part a fact about the planner's fallback heuristic. The discipline therefore needs a second half —
+before attributing a ceiling to the environment, establish that the instrument measuring it is neutral with
+respect to the thing being measured. Per-step predictability survives this test; the demanded horizon did not.
 
 **For scaling brain-like ensembles generally.** Measure inter-module error correlation before scaling. A high
 value means each added unit is redundancy; an ensemble's real capacity is set by how independent its members'
