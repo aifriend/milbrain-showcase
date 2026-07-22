@@ -238,9 +238,17 @@ failure are **count-based or state-coverage exploration, or deliberate constrain
 
 The collapse is per-step geometry to two significant figures, leaving no residual for a better learner to
 capture. Credit assignment determines how well the *one-step* objective is fit, and none of these rules fits
-it better than backprop. For scale: 0.90¹⁰ = 0.35 and 0.95¹⁰ = 0.60. **All the leverage is in per-step
-accuracy** — set by how much information the environment supplies per step, which is the constraint the
-environment search already located.
+it better than backprop. For scale: 0.90¹⁰ = 0.35 and 0.95¹⁰ = 0.60.
+
+> **⚠ Corrected 2026-07-22 — this section originally ended "all the leverage is in per-step accuracy."
+> That was too strong, and a later experiment showed why.** The exponent is a lever too. Ten chained steps
+> is not a property of the task; it is a property of a planner that must *see the goal* inside its own
+> rollout. Give the planner an estimate of remaining effort to stop at instead, and the same environment
+> needs a **3**-step lookahead rather than 12 — measured, and it survives a genuinely *learned* estimate
+> (0.76 moves error, structured, and the structure costs ~2 points). So per-step accuracy is where all the
+> *learner-side* leverage is, and the claim against credit-assignment rules stands unchanged; but the
+> **planner** has a second lever, and we had missed it. See the correction in
+> [compositional planning](../results/compositional-planning.md).
 
 ---
 
