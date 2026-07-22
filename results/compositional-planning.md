@@ -292,9 +292,56 @@ broken measurement would look like — and the finding that this is harder to do
 
 ---
 
-*Status: a **positive structural result with a load-bearing caveat**, plus three pre-registered negatives that
-locate the caveat's cause in the environment rather than the model. The programme's live question moves from
-"can we learn the composition rule here?" — measured, and no — to "what world makes compositional structure
-both necessary and learnable?", with the world itself now a pre-registered choice rather than an assumption.
-Full experimental detail, the gates as they were committed, and the analysis code live in the private
+## Correction — one of those seven rejections does not stand
+
+*Added 2026-07-22. The section above says the instrument produced the verdict twice. It was three times, and
+the third one cost us the most promising environment we had built.*
+
+The epilogue reports that one design was rejected because **the planning horizon was too long for any learner
+to keep a plan coherent**. That design — the densest one, the one where interaction-forcing hit 36% — was
+measured as needing a **12-step** lookahead. On that basis it failed.
+
+But "how far ahead must you plan?" is not a property of a world alone. It depends on what the planner does
+when it *cannot yet see the goal*. Ours fell back on straight-line distance to the target — and in an
+environment packed nearly solid, straight-line distance is not merely weak, it points the **wrong way**: to
+reach the goal you must often first shove an obstacle *away* from it, to open a route that does not yet
+exist. That is the world's defining feature. A planner steered by that heuristic has to search deep enough to
+see the goal directly and ignore its own instinct entirely.
+
+Give it instead a sense of *remaining effort* — how many moves from done, which accounts for the obstacles —
+and the same world needs a lookahead of **3**:
+
+| what guides the planner when it can't see the goal | lookahead needed |
+|---|---|
+| straight-line distance (as screened) | **12** |
+| exact remaining-effort estimate *(positive control)* | 1 |
+| estimate carrying a full move of error | **3** |
+| **a genuinely learned estimate** (0.76 moves error) | **3** — 95% success |
+
+Under the screen's own threshold, that design fails on horizon with the first row and **passes** with the
+last. The number was a 4× function of the heuristic, not of the task.
+
+Two things make this more than a footnote. First, the obvious version of the experiment — swap in the *exact*
+answer and re-measure — is **guaranteed to succeed before it runs**, since acting greedily on a perfect
+remaining-effort estimate is optimal by definition. It was pre-registered as a control precisely so it could
+not be reported as a finding. Second, the caveat that mattered was whether a *learned* estimate would work:
+learned errors are structured, correlated across nearby situations, in a way random noise is not, and search
+cannot average that away. Tested directly — the errors **are** structured, and it costs about two points.
+
+So: the environment search stands as reported for six of seven designs, on axes this does not touch. For the
+seventh, **the world was not the problem — our measuring stick was.** It was found by reading the planner's
+code and asking what it does when the goal is out of sight, not by a run coming back wrong, which is the
+cheapest way this project has yet caught one of these.
+
+What does **not** change: the composition rule is still supplied rather than learned, and every attempt to
+learn it has still failed. That question is untouched and remains the open one.
+
+---
+
+*Status: a **positive structural result with a load-bearing caveat**, plus pre-registered negatives that
+locate the caveat's cause in the environment rather than the model — with one of those negatives now
+**withdrawn**, having turned out to be a property of the planner rather than the world. The programme's live
+question moves from "can we learn the composition rule here?" — measured, and no — to "what world makes
+compositional structure both necessary and learnable?", with one previously-rejected candidate back on the
+table. Full experimental detail, the gates as they were committed, and the analysis code live in the private
 implementation repository.*

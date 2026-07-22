@@ -40,7 +40,7 @@ reproduction record.*
 ## Growing the architecture — results so far
 
 The reproduction is the baseline; the actual research is whether the architecture can be **grown**
-instead of hand-designed. Five results are in, all pre-registered and reported honestly:
+instead of hand-designed. Six results are in, all pre-registered and reported honestly — including one that corrects an earlier negative of our own:
 
 - **Evolving the *voting topology*** on the fixed 5-column model → a **pre-registered inconclusive
   result**. On the shipped tasks we can claim neither that voting topology matters nor that it doesn't
@@ -86,6 +86,17 @@ instead of hand-designed. Five results are in, all pre-registered and reported h
   attempts to decide whether the required properties are *jointly* satisfiable both failed with the
   **instrument**, not the environment, producing the verdict — so we do **not** claim they are unsatisfiable.
   [Full write-up →](results/compositional-planning.md)
+
+- **…and then one of those seven rejections was withdrawn** → a **correction against our own result.** The
+  densest design — the one where interaction-forcing reached 36% — had been rejected for demanding a 12-step
+  planning horizon. But "how far ahead must you plan?" depends on what the planner does when it *cannot see
+  the goal*, and ours fell back on straight-line distance, which in a nearly-solid environment points the
+  **wrong way**: you must shove obstacles *away* from the goal to open a route. Given an estimate of
+  *remaining effort* instead, the same world needs a lookahead of **3**, not 12 — and it survives a genuinely
+  **learned** estimate (0.76 moves of error, structured, costing ~2 points). Under the screen's own threshold
+  that design now **passes**. The check that could have flattered us was pre-registered as a control
+  *because* its result was guaranteed in advance. Found by reading the planner's code, not by a run coming
+  back wrong. [Full write-up →](results/compositional-planning.md)
 
 **→ [Where this points next — the finding in the neuroscience literature](theory/directions-from-the-frontier.md)**
 
