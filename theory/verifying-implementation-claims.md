@@ -240,6 +240,28 @@ The collapse is per-step geometry to two significant figures, leaving no residua
 capture. Credit assignment determines how well the *one-step* objective is fit, and none of these rules fits
 it better than backprop. For scale: 0.90¹⁰ = 0.35 and 0.95¹⁰ = 0.60.
 
+> **⚠ Second correction, 2026-07-23 — the evidence offered above is circular, and separately the "no
+> residual" clause is false as written.** Two defects, found while re-checking this section:
+>
+> **(1) That "~6% observed" is not an observation.** It is *derived* elsewhere in our own notes as
+> `≈0.76¹⁰ ≈ 6%` — so "0.75¹⁰ = 0.056 against an observed ~6%" compares one calculation to a nearly
+> identical calculation and reports the match as though a prediction had met a measurement. The underlying
+> claim may still be true; **the evidence given for it here is not evidence.** (We had also already retired
+> the `M3^H` statistic elsewhere, for the related reason that two defensible versions of it disagreed by a
+> factor of eighteen.)
+>
+> **(2) A better learner did capture a large residual, in this very environment.** Swapping the one-step
+> model from a k-NN to an MLP moved per-step balanced accuracy only 0.617 → 0.642, but moved end-to-end
+> planning gap recovery **7.9% → 50.1%** (paired t = 5.02, better in 6 of 6 seeds). A 2.5-point per-step
+> gain produced a six-fold planning gain. So "no residual for a better learner to capture" is wrong as
+> stated — the honest scope is the narrow one: *bio-plausible credit-assignment rules* do not fit the
+> one-step objective better than backprop, and our system is not gradient-trained, so they buy us nothing.
+>
+> Taken with the 2026-07-22 correction below, the section's original headline survives only in this much
+> reduced form. We are leaving the original text visible rather than rewriting it, because the shape of the
+> error — an arithmetic identity presented as an empirical confirmation — is the more useful thing to
+> publish.
+
 > **⚠ Corrected 2026-07-22 — this section originally ended "all the leverage is in per-step accuracy."
 > That was too strong, and a later experiment showed why.** The exponent is a lever too. Ten chained steps
 > is not a property of the task; it is a property of a planner that must *see the goal* inside its own

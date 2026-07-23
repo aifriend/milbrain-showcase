@@ -17,8 +17,11 @@ pre-registered, adversarially-verified experimental program we find a clean **ne
 mechanism**: on static object recognition, accuracy is **flat from two to five columns** (≈89.4%), and the
 reason is measurable — the columns make their errors on the *same* objects (inter-column error correlation
 φ≈0.75). Adding near-identical columns buys redundancy, not accuracy; the hand-designed column count is
-load-bearing for *latency*, not *accuracy*. A grown three-column model is statistically accuracy-equivalent
-to the designed five-column model at ~⅓ the compute. The natural remedy — decorrelate the columns by
+load-bearing for *latency*, not *accuracy*. A **generated** three-column model is statistically
+accuracy-equivalent to the designed five-column model at ~⅓ the compute — *generated*, not *grown*: the
+evolutionary genome cannot represent a three-column model (`SHIPPED_LMS = (1, 5)`), and a later
+edge-count-matched random control found its connectivity no better than random, so no claim of search or
+growth is made for this configuration. The natural remedy — decorrelate the columns by
 spreading their sensory patches — proves geometrically self-defeating: any spread wide enough to decorrelate
 the median object pushes the patch off the small objects. The lever for capability is column **diversity**,
 not **count** — a concrete, falsifiable refinement of "more columns, more robust," and a caution for anyone
