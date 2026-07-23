@@ -1,13 +1,20 @@
 # Growing the column count — the first accuracy-vs-compute frontier point
 
+> **⚠️ Correction, applied throughout this page (2026-07-23).** The three-column model was a **generated
+> configuration, not the product of a search** — the evolutionary genome cannot represent a 3-column model
+> at all (`SHIPPED_LMS = (1, 5)`) — and its connectivity has since been measured to be no better than
+> random. **The measurements below stand; the word *grown* does not.** This is a *configuration* result.
+> Full reasoning in the section *"Follow-up (2026-07-23) — the connectivity was tested, and it is no better
+> than random"* below.
+
 [E0](evolving-topology.md) held the number of cortical columns fixed at five and evolved only the
 *voting topology* between them — and found no resolvable effect on the shipped tasks. **E1 lets the
 column count itself vary.** This is the comparison the [research plan](../theory/research-plan.md) was
-built toward: *does a **grown**, smaller-column architecture match the hand-designed five-column model —
-and at what compute?*
+built toward: *does a smaller-column architecture match the hand-designed five-column model — and at what
+compute?*
 
 This page reports the first real frontier point. **The headline is a genuine (if under-powered)
-positive: a grown three-column cortex is statistically equivalent in accuracy to the designed
+positive: a generated three-column cortex is statistically equivalent in accuracy to the designed
 five-column one while using roughly a third of the compute** — and the one thing that keeps it from a
 clean "pass" is not accuracy at all, but a few percent more integration steps.
 
