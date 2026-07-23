@@ -55,6 +55,13 @@ instead of hand-designed. Six results are in, all pre-registered and reported ho
   deficit. Accuracy is conserved from 2 to 5 columns; what changes is *how* the recognition is paid for
   (parallel voting vs. serial integration time). Not yet "grown beats designed" — but the first evidence
   that the designed column count is load-bearing for *latency*, not *accuracy*.
+  **Follow-up (2026-07-23): the connectivity was then tested too, and it is no better than random.**
+  Varying *only* the vote matrix at fixed *N* = 3 (56 evaluations, 8 seeds, zero failures), designed
+  topologies scored *slightly below* random matrices at the same edge count — the lever is edge **count**,
+  not structure. But removing voting *entirely* costs ~nothing in accuracy and **2.5× the integration
+  steps**, with *three* edges recovering the whole benefit — a cliff at zero, not a gradient. So the
+  voting **connections** are load-bearing for latency too. A correction this forces: "evolving" overstates
+  it — the three-column model was a *generated configuration*, not a search product.
   [Full write-up →](results/growing-columns.md)
 
 - **Why the accuracy was flat** → a **verified negative that reframes the program.** Re-analysing the same
