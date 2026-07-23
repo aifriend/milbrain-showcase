@@ -71,6 +71,46 @@ integration time.
   grown architecture is not paying an accuracy penalty for being smaller — the first evidence that the
   hand-designed column count is not, on this task, load-bearing for *accuracy*, only for *latency*.
 
+---
+
+## Follow-up (2026-07-23) — the connectivity was tested, and it is no better than random
+
+The result above varies the column **count** while holding the voting **topology** fixed at all-to-all.
+That left an obvious question unasked: was the connectivity itself doing any work? A pre-registered sweep
+answered it — fixed *N* = 3, varying **only** the vote matrix, 56 evaluations on the same 77-object task,
+8 seeds per arm, zero failures.
+
+**There is no motif.** Designed sparse topologies were compared against **random matrices at the same edge
+count** — the control that separates *"this particular wiring is good"* from *"fewer connections is
+cheaper"*. Both designed arms came out **slightly below** their random equivalents (−1.30 and −1.14
+points, neither significant). A vote matrix drawn at random works as well as a hand-designed hub or ring.
+
+Without those random arms this would have looked like a discovery: the 3-edge ring is accuracy-equivalent
+to the designed 5-column model at 38% less compute. It is simply a consequence of having fewer edges.
+
+**The unexpected half is more interesting.** Removing voting *entirely* — three columns that never
+exchange a message — costs essentially **nothing in accuracy** (it scored 1.5 points *higher*, within
+noise) but takes **2.5× as many integration steps** to get there (20.2 → 51.2 matching steps; 32.5 → 80.3
+system steps). And **three edges recover the whole benefit**: a 3-edge ring is indistinguishable from a
+fully-connected 6-edge model on both step measures. It is a **cliff at zero, not a gradient** — *any*
+connectivity buys nearly all of it.
+
+So the finding on this page extends one level down. The designed column **count** is load-bearing for
+latency rather than accuracy; so are the voting **connections**. Both are what an inter-column error
+correlation of φ ≈ 0.75 predicts: columns that already fail on the same episodes cannot correct one
+another, they can only reach agreement faster.
+
+One honest caveat kept from the analysis: pooling across columns at readout *does* recover episodes a
+single column misses (worth ~0.5–1.9 points in every arm, including the one with no voting at all). So
+the claim is **not** "voting buys nothing" — it is that *explicit message-passing* adds nothing to accuracy
+beyond that pooling.
+
+**And a correction this forces on the language above.** "Evolving the column count" overstates what
+happened twice over: the three-column model was a *generated configuration*, not the product of a search
+(the evolutionary genome cannot represent a 3-column model at all), and the connectivity it used is now
+measured to be no better than random. The measurements stand; the word *evolving* does not. This page's
+results are a **configuration** result, not a growth result.
+
 ## The methodology is, again, the point
 
 Consistent with the [E0 close-out](evolving-topology.md#the-methodology-is-the-real-win-so-far) and the
