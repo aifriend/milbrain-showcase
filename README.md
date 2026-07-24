@@ -136,6 +136,14 @@ instead of hand-designed. Six results are in, all pre-registered and reported ho
   (and why 10× data doesn't rescue the monolith), the three failed attempts to *learn* the composition rule,
   and the horizon-vs-contact-variability pincer that makes the world — not the learner — the binding
   constraint.
+
+- **[The wall is the model of the physics](results/the-transition-wall.md)** — the agency arc's next
+  chapter: with the planning horizon fixed, a **learned** model of the physics still collapses planning to
+  **7.6%** even given a perfect sense of distance; the learner is at **chance** on the single fact the world
+  withholds; simply **trying** a move beats predicting it (69.3% vs 39.9%) — which is deflating, because it
+  means the environment never made the test expensive. Includes the decision **not** to build an eighth
+  world, measured rather than argued, and three corrections to our own claims.
+
 - **[Directions from the frontier](theory/directions-from-the-frontier.md)** — the grown-columns
   finding read against the neuroscience literature (cortical redundancy & degeneracy, efficient/sparse
   coding, the speed–accuracy tradeoff, developmental encoding), and the best next experiments

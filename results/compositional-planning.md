@@ -336,6 +336,12 @@ cheapest way this project has yet caught one of these.
 What does **not** change: the composition rule is still supplied rather than learned, and every attempt to
 learn it has still failed. That question is untouched and remains the open one.
 
+**→ We then pushed on that surviving design properly, and the story continues in
+[The wall is the model of the physics](the-transition-wall.md)** — where a *learned* model of the physics
+collapses planning to 7.6% even when the agent is handed a perfect sense of distance, where simply *trying* a
+move beats predicting it, and where we designed an eighth environment and then measured our way out of
+building it.
+
 ---
 
 *Status: a **positive structural result with a load-bearing caveat**, plus pre-registered negatives that
