@@ -135,6 +135,54 @@ sense of progress **cannot recognise an impossible situation**, and scores one a
 model's job there is not to predict the physics but to stop the planner from walking into places that cannot
 exist.
 
+## We measured that, and it is worse than it sounds
+
+We showed the judge situations that **cannot physically exist** — furniture occupying the same space, because
+the agent's imagination shoved one piece through another. A good judge would flag them. Ours flagged **none**.
+Worse: **51% of impossible situations it rated better than a typical real one.** The cause is mundane — in all
+its training it had only ever been shown situations that can actually occur, so on an impossible one it simply
+guessed, confidently.
+
+## The fix that was honest, and the one that cheated
+
+The tempting fix is to *tell* the judge which situations are impossible. We refused it as the candidate,
+because you can spot an impossible situation here by **counting the furniture** — so a judge trained to reject
+them has been handed the very rule the agent was supposed to discover.
+
+Instead: train **five copies** of the judge on the same ordinary situations, and watch whether they **agree**.
+Nobody tells them anything about physics. On real situations they agree closely; on impossible ones they
+**scatter — two and a half times more disagreement**. That is the first mechanism in this project that
+detects hallucinated situations *without being told the rule*.
+
+We ran the cheating version too, labelled as an upper bound. **It lost.** Forcing the judge to shout
+"terrible!" at impossible situations wrecked its ordinary sense of distance — with that judge, even a perfect
+imagination planned far worse (97% → 78%). So the shortcut was both dishonest and inferior, which is not the
+usual direction of that trade.
+
+## And then the ablation deflated our own headline
+
+Five judges do two things at once: they **average away** individual mistakes, and they **disagree** usefully.
+Our first write-up credited the gain to the disagreement. Before publishing, we ran the clean test — same five
+judges, ignoring their disagreement entirely.
+
+| where the improvement came from | |
+|---|---|
+| plain averaging | **~72%** |
+| the disagreement signal | **~28%** |
+
+So "self-doubt more than doubles a rule-ignorant agent" is **wrong as we first attributed it**. A five-judge
+ensemble does; most of that is ordinary variance reduction. The 2.5× detection result stands untouched — what
+changed is how much of the *planning* gain it explains.
+
+Worth one contrast: elsewhere in this project, adding near-identical experts bought nothing, because they made
+the same mistakes together. Here, five judges differing only by random seed disagreed enough that averaging was
+the *bigger* win. Same move, opposite result, different substrate — which is precisely why the ablation was
+worth running rather than assuming.
+
+**What is left is narrower and sharper than when we started:** a separate advisor that models what the world
+*refuses* is still not redundant with a judge that knows when it is *uncertain*. Those are two different kinds
+of knowing, and only one of them can be had for free.
+
 That question needs no new world. It is the one we are left holding.
 
 ---
