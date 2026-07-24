@@ -183,6 +183,72 @@ worth running rather than assuming.
 *refuses* is still not redundant with a judge that knows when it is *uncertain*. Those are two different kinds
 of knowing, and only one of them can be had for free.
 
+## The last experiment: was it the *format*, not the lesson?
+
+One possibility remained. The agent's imagination had always been handed the room as a **list** — the twelve
+nearest pieces of furniture, ordered by how close they are. To answer "is something wedged behind this
+couch?" it had to listen through that list for whichever item happened to be two steps directly ahead. Its
+judge, meanwhile, got a **floor plan**, where every square has a fixed address.
+
+So we tried three descriptions of the same room, containing exactly the same facts:
+
+- **the list** (what it always had) — right about the crucial question **66%** of the time
+- **a floor plan with a fixed north** — the fair fix, and it made things **worse: 60%**
+- **a floor plan that turns with you**, so the square you care about is always the same square on the page —
+  **98%**, and escaping the room went from 31% to **86%**
+
+The fair fix failed. Computing "which square is two ahead of me" turned out to be *harder* than skimming a
+list. So the format was not the wall either.
+
+## And then the exciting number turned out to be a bug in the question
+
+The turning map looked like it had solved everything. It hadn't. Because the map rotates with you, the square
+you need to check is *always the same square* — and when we looked, that square's contents were **literally
+identical to the answer, in every single one of the 475 training examples.** A rule that just reads that one
+square scores a perfect 100%.
+
+The map wasn't teaching the agent to work anything out. It was printing the answer in a fixed spot on the page
+and letting the agent read it.
+
+**We didn't make that call ourselves.** We had labelled the turning map "probably cheating" *before* running
+anything, then saw its result, and then noticed an argument for calling it fair after all. That is precisely
+the moment to stop: one answer would have handed this project its biggest headline. So we wrote down where we
+stood, refused to decide, and gave the question to independent reviewers. They ruled it cheating — and the
+one-square-equals-the-answer fact, which nobody had checked, is what settled it.
+
+That produced the most useful thing to come out of the experiment: a **test you can run before training
+anything.** If any single input, at a fixed position, already equals the answer, your setup is reading rather
+than learning. One line of arithmetic, no model required. It is now a permanent check in the codebase, and we
+verified it clears every earlier experiment without disturbing a single published result.
+
+## What six experiments establish
+
+The honest summary is a complete negative, and that is worth more than a partial win:
+
+| what we tried | did it fix the wall? |
+|---|---|
+| planning further ahead | no — with true physics the agent already succeeds 94–97% |
+| **a learned imagination of the physics** | **this is the wall — 7.6% even with a perfect sense of distance** |
+| a cleaner lesson | helped, not enough |
+| less timidity | helped, not enough |
+| making information expensive to obtain | dead end — pricing the shortcut turns the shortcut *into* the planner |
+| teaching the judge self-doubt | real, but most of it was ordinary averaging |
+| changing the format | no — and the version that worked was cheating |
+
+**One thing survives every round.** An advisor that models what the world *refuses* is still not redundant
+with a judge that knows when it is *uncertain*. Those really are two different kinds of knowing.
+
+**And one fact about this room turned out to be the thread running through it all.** The single thing the
+agent doesn't know is *cheap*: you can shove the couch and find out in one step, and — as the turning map
+showed — the answer sits in one square of a well-aligned map. Twice, in completely different disguises, the
+same defect. A model of the world only earns its keep when finding out the hard way is genuinely expensive,
+and in this room it never was.
+
+**What we would try next, and have not:** stop changing what the agent is shown, and change how it *reads*
+it — a component whose natural question is "does this set contain the thing two steps ahead?" No input equals
+the answer; the agent still has to work out where to look. If that clears the bar, the positive result arrives
+with nothing borrowed.
+
 That question needs no new world. It is the one we are left holding.
 
 ---
