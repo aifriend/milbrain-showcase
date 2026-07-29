@@ -15,6 +15,25 @@ It comes with a caveat that three separate experiments tried and failed to remov
 to be the more interesting half of the story: they locate the binding constraint not in the learner, but in the
 **world**.
 
+> **⚠ Novelty correction (2026-07-30, after an independent audit of our roadmap).** "The first positive
+> architectural finding" means *the first in this project* — not the first anywhere, and the phrasing invited
+> the stronger reading. **It is not new to the field that object-factored models transfer compositionally
+> where monoliths do not, or that more data fails to rescue the monolith.** That has been the central result
+> of the object-centric dynamics literature for a decade: **Interaction Networks** (Battaglia et al., 2016)
+> generalised to novel numbers and configurations of objects where alternatives had orders-of-magnitude
+> higher error, and the **Neural Physics Engine** (Chang et al., 2016) showed compositional transfer and
+> property inference; graph-network physics engines extended it to control.
+>
+> What *this* work adds is narrower and, we think, more interesting: that **reference-frame conditioning** —
+> storing each push as a transform in the *object's own frame* — is the specific inductive bias doing the
+> work, and that the advantage survives a **featurization-matched** monolithic control, which most prior work
+> did not run. That is the claim we defend, and it is the one a referee should test.
+>
+> The honest consequence: our comparison is against a k-NN and a plain MLP. **A graph-network /
+> Interaction-Network arm on this same task is now part of the next experiment** — if reference-frame columns
+> merely tie a 2016-era GNN, the brain-inspired part of the story is exactly what needs defending, and we
+> would rather find that out ourselves.
+
 ---
 
 ## The setting
