@@ -29,6 +29,15 @@ to be the more interesting half of the story: they locate the binding constraint
 > work, and that the advantage survives a **featurization-matched** monolithic control, which most prior work
 > did not run. That is the claim we defend, and it is the one a referee should test.
 >
+> **And the evidence base that claim now stands on.** The comparison below is reported at n = 30, one object,
+> one wall, one seed — but it has since been **replicated**: 3 objects × 3 wall sizes × 3 seeds gives a gap of
+> ≥ 20 points in **16 of 16** evaluable cells, **median +47.9 points**, factored **54.4%** vs monolithic
+> **8.1%** on novel arrangements — and it survives dropping the exclusion rule entirely (81.5% of all 27
+> cells, median +29.2). The factored model additionally admits a **new object with zero interaction data**
+> (28.5%, against ≤ 4.2% for every monolithic arm, including one handed full interaction data on that object).
+> A corrected-but-single-seed claim would be a weaker artifact than a corrected-and-replicated one; the
+> replication is why the narrowed claim is worth making at all.
+>
 > The honest consequence: our comparison is against a k-NN and a plain MLP. **A graph-network /
 > Interaction-Network arm on this same task is now part of the next experiment** — if reference-frame columns
 > merely tie a 2016-era GNN, the brain-inspired part of the story is exactly what needs defending, and we
