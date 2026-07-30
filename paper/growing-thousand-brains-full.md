@@ -160,6 +160,22 @@ partial data; the completeness guard fired for real, rejecting an incomplete dat
 decorrelation pilot cost ~$2 to learn that a ~$40 experiment grid would hit a wall. No infrastructure failure
 (a preemption, a resource stall) ever produced a *wrong* number — each surfaced as an honest incomplete.
 
+### 4.6 Enumeration settles the count axis
+
+The E1 frontier left a methodological debt: the architecture-search literature warns that a search matching a
+baseline does not license crediting the *search* — enumeration often does as well. The control cost no new
+compute: the archived 77-object evaluations were re-scored with the same gate machinery, this time with the
+cheapest configuration as incumbent. Accuracy spans **0.16 points** across N = 2–5 (89.45–89.61%) with every
+paired superiority test at *p* = 1.0000, while the compute proxy grows monotonically (109 → 719). With N = 2
+as incumbent the gate returns **NO-PASS — the smallest configuration stays Pareto-optimal.** Since accuracy is
+flat while cost is monotone, the optimum on this axis is the smallest N *by construction*: there is no
+landscape to search, enumeration solves the axis exactly, and **evolving the column count is retired** — a
+third independent line to the same conclusion, after the voting-motif null (designed connectivity no better
+than random) and the genome fact (no search ever produced the three-column model). The error correlation
+behind the flatness is measured constant at δ(N) ≈ 0.75 across counts, and the even/odd wobble is 0.05× the
+per-seed noise. Scope is unchanged from §4.3: this concerns column *count* on static recognition, not
+diversity, and not the agency arm.
+
 ## 5. From perception to action: object-factored structure buys compositional planning
 
 §4 established that a saturated static task cannot discriminate architectures. That is a statement about the
@@ -245,6 +261,24 @@ the world *permits* learned models only 76–85%, with errors in the fatal direc
 measurement shows the residual is not predictable at the resolution the data supports, because the variability
 is intrinsic to contact rather than a deficiency of the model. The positive result therefore stands with its
 ceiling explained rather than asserted, and the constraint is located in the environment, not the learner.
+
+**A strong-opponent coda (2026-07-30).** Every monolithic opponent above — and in the function-class
+follow-up — was a nearest-neighbour or a plain small network: weak opponents. The one hidden bit of the
+densest world (*is the cell beyond a pushed block occupied?* — a query-conditioned set-membership test,
+~475 decisive examples) was therefore re-contested against the methods that actually win at this scale, at
+identical data and **equalized tuning** (30 random configurations per arm, paired splits, the tuning log as an
+arm dimension), pre-registered with **no predicted winner** and with the project's leak screens binding on
+every arm. **The modern monolith wins, decisively.** Gradient-boosted trees over the plain sorted features
+score **0.870** balanced accuracy against the best structural arm's 0.750 (an Interaction-Network GNN;
+Δ −0.120 [−0.134, −0.106]) — and the Set Transformer, promoted to favourite because attention *is* the
+membership operation the rule requires, scores **0.580, below the 0.664 plain-network reference**:
+expressible by an architecture is not findable at n ≈ 475. An expert mixture does beat its parameter-matched
+single-expert control (+0.071, CI excluding 0), but both sit 0.28+ below the trees. Wired back into the
+planner, the trees are the **only** learner clearing the pre-registered gap-recovery bar (0.441 with a learned
+value, 0.310 with an exact one) — cutting the distance to the transition wall by about half, no more. The two
+claims are compatible: object-factored structure pays for *transfer given a composition rule* (this section),
+while *learning the hidden rule at small n* is won by the modern tabular learner (this coda). One world, one
+bit, one scale; the result says nothing about the families in general.
 
 ## 6. Discussion
 
@@ -339,7 +373,10 @@ quasi-static, with one obstacle at a time, 24 episodes per cell, and multi-objec
 new-object result is a marginal pass whose mean hides per-configuration spread, and its factored arm is given
 object geometry. The impossibility result is likewise *local*: it establishes that composition is not learnable
 at the resolution this world's contact variability permits, not that learned composition is impossible in
-general.
+general. The strong-opponent coda is local in the same way — one world, one hidden bit, one data scale
+(n ≈ 475), with one roster member (TabPFN) unrun for an environment reason — so it bounds the specialist
+hypothesis *there*, not the architectures in general; and its inner-split tuning scores overstate held-out
+performance for every arm, so the ranking, not the absolute numbers, is the readable content.
 
 ## 8. Conclusion
 
