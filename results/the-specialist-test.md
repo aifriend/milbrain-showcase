@@ -129,5 +129,5 @@ planning and transfer — with the composition rule still supplied, not learned.
 remain are the ones the negatives cleared a path to: whether a value can be bootstrapped from experience
 rather than taught by an oracle, and what environment could make a learned composition rule worth having.
 
-*Full gate text, arm roster, tuning logs, and result JSON live in the private implementation repository
-(`GATE_step2_specialists.md`, `results_step2.json`).*
+*Full gate text, arm roster, tuning logs, and the result record live in the private implementation
+repository.*
