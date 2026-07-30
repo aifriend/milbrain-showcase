@@ -150,3 +150,38 @@ flat from 2 to 5 columns is answered next — the columns fail on the same objec
 connects to cortical redundancy, efficient coding, and the speed–accuracy tradeoff in the neuroscience
 literature — is taken up in [the directions report](../theory/directions-from-the-frontier.md). Full
 experimental detail and the analysis live in the private implementation repository.*
+
+---
+
+## Follow-up (2026-07-24) — enumeration beat the search, and the count question is closed
+
+The E1 frontier above left a methodological loose end: the architecture-search literature (Li & Talwalkar,
+2019) warns that a search matching a baseline does not license crediting the *search* — random search or
+plain enumeration often does as well. The control was owed, and it cost **no new compute**: the archived
+77-object evaluations were simply re-scored with the project's own gate machinery, this time with the
+*cheapest* configuration as the incumbent.
+
+| columns | accuracy | compute (proxy) | accuracy / compute |
+|---|---|---|---|
+| **2** | **89.61%** | **109** | **82.0** |
+| 3 | 89.45% | 255 | 35.0 |
+| 4 | 89.61% | 449 | 19.9 |
+| 5 (designed) | 89.45% | 719 | 12.4 |
+
+Accuracy spans **0.16 points** across the whole range; every paired superiority test against the two-column
+incumbent returns *p* = 1.0000; cost rises monotonically. The gate's own verdict, re-run with *N* = 2 as the
+reference: **NO-PASS — "designed 2 stays Pareto-optimal."** A four-point sweep does not merely match the
+search product, it picks a *strictly better* configuration at 2.3× lower cost. And because accuracy is flat
+while cost is monotone, **the optimum on this axis is the smallest *N* by construction** — there is no
+landscape to search, so enumeration solves the axis exactly and no evolutionary search can beat it.
+
+That is the third independent line to the same place, after the [voting-motif follow-up
+above](#follow-up-2026-07-23--the-connectivity-was-tested-and-it-is-no-better-than-random) (a designed
+connectivity does no better than random) and the genome fact from the correction above (no search ever
+produced the three-column model — `SHIPPED_LMS = (1, 5)`). A measured detail that ties the story together:
+the per-count error correlation δ(N) is **constant at ≈ 0.75** — the [correlation
+bottleneck](correlation-bottleneck.md) is exactly what makes the accuracy curve flat, and the apparent
+even/odd wobble is 0.05× the per-seed noise. **Evolving the column count is therefore retired, and the
+"count" chapter of this project closes: *count was never the lever*.** Scope, stated as carefully as the
+result: this is about column *count* on static 77-object recognition — it says nothing about growing
+*diversity* (the roadmap's actual recommendation), and nothing about the agency arm.
