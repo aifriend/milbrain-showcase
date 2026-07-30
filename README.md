@@ -40,7 +40,7 @@ reproduction record.*
 ## Growing the architecture — results so far
 
 The reproduction is the baseline; the actual research is whether the architecture can be **grown**
-instead of hand-designed. Six results are in, all pre-registered and reported honestly — including one that corrects an earlier negative of our own:
+instead of hand-designed. Eight results are in, all pre-registered and reported honestly — including one that corrects an earlier negative of our own:
 
 - **Evolving the *voting topology*** on the fixed 5-column model → a **pre-registered inconclusive
   result**. On the shipped tasks we can claim neither that voting topology matters nor that it doesn't
@@ -105,6 +105,25 @@ instead of hand-designed. Six results are in, all pre-registered and reported ho
   *because* its result was guaranteed in advance. Found by reading the planner's code, not by a run coming
   back wrong. [Full write-up →](results/compositional-planning.md)
 
+- **Settling the column count for free** → **the search is retired by arithmetic.** Re-scoring the archived
+  77-object evaluations with the *cheapest* configuration as incumbent (no new compute): accuracy is flat
+  across 2–5 columns (spread 0.16 pt, every superiority test *p* = 1.0) while compute grows monotonically, so
+  the optimum is the **smallest count by construction** — a four-point sweep picks a strictly better
+  configuration than the search product, 2.3× cheaper, and with no landscape to search, evolving the count is
+  not worth running. The correlation behind the flatness is measured constant at δ ≈ 0.75 across counts.
+  Third independent line to the same place, and the "count" chapter closes.
+  [Full write-up →](results/growing-columns.md#follow-up-2026-07-24--enumeration-beat-the-search-and-the-count-question-is-closed)
+
+- **The specialists finally meet a *strong* opponent** → **a clean negative: the trees win.** On the hardest
+  small-data problem this project has produced (one hidden bit, ~475 examples), every prior monolith opponent
+  was a weak one — so the structural arms were re-tested against the methods that actually win at this scale,
+  at identical data and **equalized tuning**, pre-registered with **no predicted winner**. Gradient-boosted
+  trees over the plain features beat every specialist — attention, message passing, and expert mixtures alike
+  (0.87 vs 0.75 for the best structural arm, interval clear of zero) — and were the *only* learner that also
+  planned better end-to-end. The theoretical favourite (attention, which *is* the operation the rule requires)
+  finished **below** the old baseline: expressible by an architecture ≠ findable at this scale.
+  [Full write-up →](results/the-specialist-test.md)
+
 **→ [Where this points next — the finding in the neuroscience literature](theory/directions-from-the-frontier.md)**
 
 ## What you can explore
@@ -143,6 +162,10 @@ instead of hand-designed. Six results are in, all pre-registered and reported ho
   withholds; simply **trying** a move beats predicting it (69.3% vs 39.9%) — which is deflating, because it
   means the environment never made the test expensive. Includes the decision **not** to build an eighth
   world, measured rather than argued, and three corrections to our own claims.
+- **[The specialists meet a strong opponent](results/the-specialist-test.md)** — the strong-opponent test:
+  every structural arm (attention, message passing, expert mixtures) re-tested against modern small-data
+  monoliths at identical data and equalized tuning, pre-registered with no predicted winner — and
+  gradient-boosted trees win (0.87 vs 0.75), the only learner that also plans better.
 
 - **[Directions from the frontier](theory/directions-from-the-frontier.md)** — the grown-columns
   finding read against the neuroscience literature (cortical redundancy & degeneracy, efficient/sparse
