@@ -61,14 +61,33 @@ PYEOF
 
 step "3/3  no private material leaked from the implementation repo"
 # This repo states it contains theory, results and figures only — no code. These patterns are the ones that
-# have actually needed checking by hand: local paths, cloud/infra identifiers, private-repo directories and
+# have actually needed checking by hand: local paths, cloud storage URLs, private-repo directories and
 # module names, and secret-shaped strings. Kept narrow so a legitimate prose mention does not trip it.
-PATTERNS='/Users/|/private/tmp|REDACTED_GCP_PROJECT_ID|gs://|REDACTED_GCP_REGION|\.venv|scratchpad|extensions/(agency|grown_architecture)|deploy/gcp|[A-Za-z0-9_]+\.py\b|GATE_[a-z]|rung_[a-z]|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20}|BEGIN (RSA |OPENSSH )?PRIVATE KEY'
+PATTERNS='/Users/|/private/tmp|gs://|\.venv|scratchpad|extensions/(agency|grown_architecture)|deploy/gcp|[A-Za-z0-9_]+\.py\b|GATE_[a-z]|rung_[a-z]|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20}|BEGIN (RSA |OPENSSH )?PRIVATE KEY'
 if git ls-files | xargs grep -nEI "$PATTERNS" 2>/dev/null | grep -v '^scripts/ci.sh:'; then
   echo "  LEAK: the lines above look like private-repo material in a public repo"
   fail=1
 else
-  echo "  clean — no local paths, infra identifiers, private module names or secret-shaped strings"
+  echo "  clean — no local paths, private module names or secret-shaped strings"
+fi
+
+# The exact infrastructure identifiers this gate guards against (cloud project, region) are NOT written in
+# this file: naming them here would publish them. They come from the environment variable LEAK_PATTERNS,
+# one literal string per line, which the workflow fills from the repository secret of the same name.
+# Matching is fixed-string, and only file:line is printed, so a hit never echoes the identifier itself.
+if [ -n "${LEAK_PATTERNS:-}" ]; then
+  hits="$(git ls-files | xargs grep -nHIF -f <(printf '%s\n' "$LEAK_PATTERNS" | tr -d '\r' | sed '/^[[:space:]]*$/d') 2>/dev/null | cut -d: -f1,2)"
+  if [ -n "$hits" ]; then
+    printf '%s\n' "$hits" | sed 's/^/  /'
+    echo "  LEAK: the file:line locations above contain a private infrastructure identifier"
+    fail=1
+  else
+    echo "  clean — no private infrastructure identifiers"
+  fi
+else
+  msg="LEAK_PATTERNS is not set, so the private infrastructure identifiers were not checked"
+  [ "${GITHUB_ACTIONS:-}" = "true" ] && echo "::warning::$msg"
+  echo "  SKIPPED — $msg"
 fi
 
 printf '\n%s\n' "$([ $fail -eq 0 ] && echo 'CI PASSED' || echo 'CI FAILED')"
