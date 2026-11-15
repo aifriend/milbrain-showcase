@@ -194,6 +194,16 @@ and whether grown structure matches or beats the hand-designed one. An adversari
 (July 2026) found this intersection — evolutionary/developmental encoding × reference-frame cortical
 models — **unoccupied**.
 
+## Reproducibility
+
+All reproduction numbers above were measured against **Monty v0.42.0** (commit `61fcea3d`), pinned
+to that exact release. The run used the `randrot_noise_10distinctobj_surf_agent` experiment in a
+containerized, CPU-only environment with headless software rendering, on 2026-07-11. The documented
+reference figures come from the raw `benchmarks/ycb_10objs.csv` table, which is identical across
+v0.38.0 to v0.42.0. The full run record is in [Reproduction record](results/reproduction.md). The
+implementation code is in a separate private repository, so this repo holds the results, not a
+runnable pipeline.
+
 ## Credit & license
 
 Monty and the Thousand Brains Theory are the work of the **Thousand Brains Project** (formerly
